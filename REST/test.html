@@ -1,0 +1,118 @@
+<html>
+<head>
+	<title>Testing the REST Service :)</title>
+</head>
+
+<style type="text/css">
+.data{
+	display: none;
+}
+</style>
+
+<body>
+
+<h1>REST</h1>
+<p>
+<strong>Hi! This is the test for our own RESTful service :)</strong>
+</p>
+<p>
+
+<input type="text" id="termino"/>
+<ul>
+	<li><a href="javascript:;">Click me!</a></li>
+</ul>
+</p>
+
+<p>
+<h2>Result</h2>
+<ul>
+	<li>ID: <div id="id" class="data"></div></li>
+	<li>Name: <div id="name" class="data"></div></li>
+	<li>E-mail: <div id="email" class="data"></div></li>
+	<li>Fact: <div id="fact" class="data"></div></li>
+</ul>
+</p>
+
+
+  <script type="text/javascript" src="underscore-min.js"></script>
+  <script type="text/javascript" src="jquery-1.7.1.js"></script>
+  
+  
+
+<script type="text/javascript">
+
+	$(function(){
+
+		$('a').click(function(){
+			
+			var termino = $('#termino').val();
+
+			$.ajax({
+				
+				url: 'http://localhost:180/side/REST/api/productos',
+				
+				type: 'GET',
+				
+				//data: { page: 1 },
+				
+				success: function(response){
+					
+					console.log(response);
+
+					_.each(response, function(negocio){
+						console.log(negocio)
+					})
+
+
+				},
+				error: function(e){
+					console.log(':(');
+				},
+				statusCode : {
+					204: function(){
+						console.log('success but not user found :(');
+					}
+				}
+			});
+
+
+		/*$.ajax({
+				url: 'http://feeds.feedburner.com/atomixvg?format=json',
+				type: 'GET',
+				//data: { format: 'xml' },
+				success: function(response){
+					console.log(response);
+				},
+				error: function(e){
+					console.log(':(');
+				},
+				statusCode : {
+					204: function(){
+						console.log('success but not user found :(');
+					}
+				}
+			});*/
+
+		});
+	});
+
+/*
+Plaza 
+
+Collections
+	NegociosCollection
+Models
+	NegocioModel
+		render()
+
+Views
+	GlobalView
+	NegocioView
+
+
+*/
+
+</script>
+
+</body>
+</html>

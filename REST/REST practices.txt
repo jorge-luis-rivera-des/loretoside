@@ -1,0 +1,17 @@
+http://api.example.com/{ver}/{lang}/{resource_type}/{resource_id}.{output_format}?{filters and api_key as arguments}
+
+Responses:
+
+200 OK: Success! - Used by the GET's
+201 Created: Used by the POST
+304 Not Modified: There was no new data to return (think: cache).
+400 Bad Request: Invalid Request. Error message will be returned to provide further details.
+401 Unauthorized: Authentication credentials were missing or incorrect.
+403 Forbidden: Valid request that was refused. Attempt to access a resource that the client does not have permission to. Error message will be returned to provide further details.
+404 Not Found: The URL requested is invalid or the resource requested, such as a story or a user, does not exists.
+406 Not Acceptable: Returned when parameters passed are correct in theory and individually, but when combined can not be satisfied because the combination makes no sense (e.g. cart_id from one user is used with a user_id from another user). If possible, an error message will be returned to provide further details.
+500 Internal Server Error: Something went horribly wrong and we were not smart enough to provide more details :) Hopefully a very rare response code.
+503 Service Unavailable: Servers are offline for maintenance or went down under load (oops).
+
+
+Read more: http://technorati.com/technology/it/article/pragmatic-restful-api-design/page-3/#ixzz1tNpsgE00
