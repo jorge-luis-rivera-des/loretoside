@@ -79,9 +79,9 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		},
 
-		template : new EJS({url: '/assets/templates/plaza-virtual-main.ejs'}),
-
 		initialize: function() {
+
+			_.bindAll( this );
 
 			//Binding the events
 			negocios.reset([],{silent: true});
@@ -104,6 +104,25 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		},
 
+		//Render the Global View
+		render: function() {
+			
+			$('#main-container').html( Handlebars.templates['plaza-virtual-main.hb'] );
+			negocios.each( this.addOne );
+
+			//Temporal hack while I find the reason for that the events are not binding using the events object provided by Backbone :(
+			$('#search-business-button').on( 'click', this.search );
+
+			return this;
+		},
+
+		addOne: function(negocio){
+			
+			//Create the view of the model and render it into business container
+			return new NegocioView({model: negocio}).render();
+
+		},
+
 		//This function is called when we get a negocios response (the first time this page loads)
 		onNegociosResponse: function(response){
 			negocios.reset(_.toArray(response));
@@ -115,24 +134,6 @@ Side.UX.Modules.PlazaVirtual = (function(){
 			return false;
 		},
 
-		//Render the Global View
-		render: function() {
-			
-			$('#main-container').html(this.template.render());
-			negocios.each(this.addOne);
-
-			//Temporal hack while I find the reason for that the events are not binding using the events object provided by Backbone :(
-			$('#search-business-button').on('click', this.search);
-
-			return this;
-		},
-
-		addOne: function(negocio){
-			
-			//Create the view of the model and render it into business container
-			return new NegocioView({model: negocio}).render();
-
-		},
 
 		//Called when the user try to find business based on the term provided
 		search: function(e){
@@ -168,8 +169,6 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		className: 'span3',
 
-		template : new EJS({url: '/assets/templates/business-single.ejs'}),
-
 		events: {
 
 			'click .view-business-details' : "viewDetails"
@@ -180,7 +179,7 @@ Side.UX.Modules.PlazaVirtual = (function(){
 		
 		render: function() {
 			
-			$('.business-main').append(this.$el.hide().html(this.template.render(this.model.toJSON())).fadeIn());
+			$('.business-main').append( this.$el.hide().html( Handlebars.templates['business-single.hb']( this.model.toJSON() ) ).fadeIn());
 
 			return this;
 		},
@@ -218,8 +217,6 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		loading_productos: false,
 
-		template: new EJS({url: '/assets/templates/plaza-virtual-business-details.ejs'}),
-
 		events: {
 			'click #search-productos-button' : 'loadProductos'
 		},
@@ -235,7 +232,7 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		render: function() {
 
-			Side.UX.GlobalSelectors.$mainContainer.html(this.template.render(this.model.toJSON()));
+			Side.UX.GlobalSelectors.$mainContainer.html( Handlebars.templates['plaza-virtual-business-details.hb']( this.model.toJSON() ) );
 			$('#back-to-plaza').on('click',this.returnTo);
 			
 			$('.thumbnails').masonry({
@@ -297,12 +294,16 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		loadProductos: function() {
 
-			if (this.loading_productos) return false;
+			if ( this.loading_productos ) return false;
 
 			this.loading_productos = true;
 			
 			//Request for all productos of this Negocio
-			Side.REST.API.PlazaVirtual.Productos.get({page: this.current_productos_page},this.onProductosResponse,this.onProductosResponseError);
+			Side.REST.API.PlazaVirtual.Productos.get({
+														page: this.current_productos_page
+													 },
+													this.onProductosResponse,this.onProductosResponseError
+													);
 			
 			this.current_productos_page++;
 
@@ -311,15 +312,16 @@ Side.UX.Modules.PlazaVirtual = (function(){
 		onProductosResponse: function(response) {
 			
 			//TODO: Just the first time I call reset, the other times I'll use fetch to add models to the collection :)
-			if (productos.size() == 0 )
-				productos.reset(_.toArray(response));
+			if ( productos.size() == 0 )
+				productos.reset( _.toArray(response) );
 			else 
-				productos.add(_.toArray(response));
+				productos.add( _.toArray(response) );
 
 			this.loading_productos = false;
 		},
 
 		onProductosResponseError: function(response){
+			
 			log('onProductosResponse Error!');
 			log(response);
 
@@ -348,12 +350,10 @@ Side.UX.Modules.PlazaVirtual = (function(){
 
 		className: 'span3',
 
-		template : new EJS({url: '/assets/templates/plaza-virtual-producto-single.ejs'}),
-
 		render: function () {
 
 			//append the new view to the container
-			$('.thumbnails').append(this.$el.html(this.template.render(this.model.toJSON())));
+			$('.thumbnails').append(this.$el.html( Handlebars.templates['plaza-virtual-producto-single.hb']( this.model.toJSON() ) ));
 
 			this.$el.find('img').load(function(){
 

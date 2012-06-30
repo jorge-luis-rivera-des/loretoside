@@ -137,8 +137,42 @@
                                 },
 
                                 post : function(data){},
+                                
                                 update : function(data){},
+                                
                                 remove : function(data){},
+
+                                Categorias : {
+
+                                    //Get
+                                    get: function ( data, successCallback, errorCallback ) {
+
+                                        $.ajax({
+                                           
+                                                url: Side.REST.API.path + Side.REST.API.version + 'categorias_negocios',
+                                                
+                                                type: 'GET',
+                                                
+                                                data: data,
+                                                
+                                                success: successCallback,
+                                                
+                                                error: errorCallback,
+                                                
+                                                statusCode : {
+                                                
+                                                    204: function() {
+                                                        console.log('success but not user found :(');
+                                                    }
+                                                
+                                                }
+                                        });
+
+                                        return false;
+
+                                    }
+
+                                }
 
                             },
                             /*  ==== Negocios Section - End === */

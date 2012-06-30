@@ -76,23 +76,32 @@
       </div>
 	</body>
     
+    <!-- BEGIN - Common JS Libraries -->
     <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/libs/underscore-min.js"></script>
     <script type="text/javascript" src="js/libs/backbone-min.js"></script>
     <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/libs/ejs-min.js"></script>
+    <script type="text/javascript" src="js/libs/handlebars.runtime-1.0.0.beta.js"></script>
     <script type="text/javascript" src="js/libs/modernizr.custom.min.js"></script>
+    <!-- END - Common JS Libraries -->
 
+    <!-- BEGIN - Common Scripts -->
     <script type="text/javascript" src="js/plugins.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    
+    <!-- END - Common Scripts -->
+
+    <!-- BEGIN - My Scripts -->
+    <script type="text/javascript" src="js/views.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/modules/plaza-virtual/main.js"></script>
     <script type="text/javascript" src="js/modules/eventos/main.js"></script>
+    <!-- END - My Scripts -->
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            /*Use this section here just for testing purpose, do not use in production environment*/
-        });
+
+      $(function() {
+          /*Use this section here just for testing purpose, do not use in production environment*/
+      });
+
     </script>
 </html>
