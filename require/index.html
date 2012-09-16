@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="content-type" content="text-html; charset=utf-8">
+        <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="css/plaza-virtual.css" media="screen" rel="stylesheet" type="text/css" />
+    <title>Loretoside.com | Todo sobre Loreto Zacatecas</title>
+    <meta name="description" content="Loreto Zacatecas, Noticias de Loreto Zacatecas, Fotos de Loreto Zacatecas">
+  </head>
+  <body>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '176452330831', // App ID
+          //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+
+        /*
+        FB.getLoginStatus(function(response){
+                console.log( response );
+
+        //We need to validate if th euser sis logged in. If he's get all the data about him, if not just show the login button
+
+        });
+        */
+        /*
+        FB.login(function(response) {
+         if (response.authResponse) {
+           console.log('Welcome!  Fetching your information.... ');
+           FB.api('/me', function(response) {
+             console.log('Good to see you, ' + response.name + '.');
+           });
+         } else {
+           console.log('User cancelled login or did not fully authorize.');
+         }
+       });
+      */
+
+        // Additional initialization code here
+      };
+
+      // Load the SDK Asynchronously
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+       }(document));
+    </script>
+    <div id="navbar-example" class="navbar navbar-static">
+        <div class="navbar-inner">
+          <div class="container" style="width: auto;">
+            <a class="brand" href="/"><img src="img/defaults/logo.png"></a>
+            <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">¿Qué es Loretoside.com?</a></li>
+                  <li><a href="#">Registrarme en Loretoside.com</a></li>
+                  <li><a href="#">Invitar a mis amigos</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Se parte de nuestro Staff</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="section" id="nav-community" href="/comunidad">Comunidad</a>
+              </li>
+              <li>
+                <a class="section" href="/galeria">Galería</a>
+              </li>
+              <li>
+                  <a class="section" href="/eventos">Eventos</a>
+              </li>
+              <li>
+                  <a class="section" href="/noticias">Noticias</a>
+              </li>
+              <li>
+                  <a class="section" href="/tv">Side TV</a>
+              </li>            
+              <li>
+                  <a class="section" href="/radio">Side Radio</a>
+              </li>
+              <li>
+                  <a class="section" href="/chat">Chat</a>
+              </li>
+              <li>
+                  <a class="section" href="#plaza">Plaza Virtual</a>
+              </li>
+              <li>
+                  <a class="section" href="/contacto">Contactanos</a>
+              </li>
+              <li>
+                    <form class="navbar-search pull-left" action="">
+                      <input type="text" class="search-query span3" placeholder="¿Qué estás buscando?">
+                    </form>
+              </li>
+            </ul>
+            <ul class="nav pull-right">
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar sesión <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Iniciar sesión</a></li>
+                  <li><a href="#">Invitar amigos</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">:)</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container" id="main-container">
+      </div>
+  </body>
+  <script type="text/javascript" src="js/libs/handlebars/handlebars.runtime-1.0.0.beta.js"></script>
+  <script type="text/javascript" src="js/compiled-templates/templates.js"></script>
+  <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+</html>
